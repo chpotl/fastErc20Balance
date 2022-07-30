@@ -1,0 +1,21 @@
+{
+  "name": "multicall",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@1inch/multicall": "^1.0.7",
+    "dotenv": "^16.0.1",
+    "tslib": "^2.4.0",
+    "web3": "^1.7.4"
+  },
+  "devDependencies": {
+    "ndb": "^1.1.5"
+  }
+}
