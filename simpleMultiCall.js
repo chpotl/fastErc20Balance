@@ -6,10 +6,10 @@ const tokens = require('./tokenlist')
 
 dotenv.config({ path: './config.env' });
 
-const provider = new Web3ProviderConnector(new Web3(process.env.ALCHEMY_KEY));
+const provider = new Web3ProviderConnector(new Web3('http://127.0.0.1:8545'/*process.env.ALCHEMY_KEY*/));
 const multiCallService = new MultiCallService(provider, contractAddress);
 
-// The parameters are optional, if not specified, the default will be used
+
 const params = {
   chunkSize: 100,
   retriesLimit: 3,
@@ -25,7 +25,8 @@ const callDatas = tokens.map((tokenAddress) => {
   };
 });
 
-console.time('balance');
-multiCallService.callByChunks(callDatas, params).then(() => {
-  console.timeEnd('balance');
+console.time('response time');
+multiCallService.callByChunks(callDatas, params).then((res) => {
+  console.log(res)
+  console.timeEnd('response time');
 });

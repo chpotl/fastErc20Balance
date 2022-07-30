@@ -6,7 +6,7 @@ const tokens = require('./tokenlist') //тут много токенов
 
 dotenv.config({path: './config.env'});
 
-const provider = new Web3ProviderConnector(new Web3('HTTP://0.0.0.0:7545'/*process.env.ALCHEMY_KEY*/));
+const provider = new Web3ProviderConnector(new Web3(/*'http://127.0.0.1:8545'*/process.env.ALCHEMY_KEY));
 
 const contractCalls = tokens.map(async (tokenAddress) => {
   const callData = provider.contractEncodeABI(
@@ -18,8 +18,8 @@ const contractCalls = tokens.map(async (tokenAddress) => {
   return provider.ethCall(tokenAddress, callData);
 });
 
-console.time('balance');
+console.time('process time');
 Promise.all(contractCalls).then((res) => {
   console.log(res);
-  console.timeEnd('balance');
+  console.timeEnd('process time');
 });

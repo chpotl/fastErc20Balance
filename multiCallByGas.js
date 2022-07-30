@@ -33,20 +33,21 @@ const requests = tokens.map((tokenAddress) => {
 
 const gasLimit = gasLimitService.calculateGasLimit();
 
-// The parameters are optional, if not specified, the default will be used
 const params = {
     maxChunkSize: 500,
     retriesLimit: 3,
     blockNumber: 'latest',
-    gasBuffer: 100_000
+    gasBuffer: 3000000,
+    maxGasLimit: 150000000
 };
 
 
-console.time('response')
+console.time('response time')
 const response = multiCallService.callByGasLimit(
     requests,
     gasLimit,
     params
-).then(()=>{
-  console.timeEnd('response')
+).then((res)=>{
+  console.log(res)
+  console.timeEnd('response time')
 });
